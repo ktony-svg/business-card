@@ -1,0 +1,323 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter Abuya | Digital Business Card</title>
+
+<style>
+:root{
+    --navy:#0b1f3a;
+    --gold:#c9a227;
+    --white:#ffffff;
+    --light:#f8f8f8;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,var(--navy),#16376a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    background:var(--white);
+    width:100%;
+    max-width:700px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.header{
+    background:var(--navy);
+    color:white;
+    text-align:center;
+    padding:50px 30px;
+    border-bottom:5px solid var(--gold);
+}
+
+.header h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.header p{
+    font-size:1.1rem;
+    color:#d9d9d9;
+}
+
+.content{
+    padding:35px;
+}
+
+.section-title{
+    color:var(--navy);
+    border-left:5px solid var(--gold);
+    padding-left:12px;
+    margin-bottom:20px;
+    font-size:1.4rem;
+}
+
+.contact{
+    display:grid;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.contact-item{
+    background:#f7f7f7;
+    padding:16px;
+    border-radius:10px;
+    font-size:1rem;
+    border-left:4px solid var(--gold);
+}
+
+.buttons{
+    display:grid;
+    gap:15px;
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    padding:16px;
+    border-radius:10px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.primary{
+    background:var(--navy);
+    color:white;
+}
+
+.primary:hover{
+    background:#16376a;
+}
+
+.gold{
+    background:var(--gold);
+    color:white;
+}
+
+.gold:hover{
+    opacity:0.9;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+    font-size:14px;
+    border-top:1px solid #eee;
+}
+
+/* POPUP */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:white;
+    max-width:500px;
+    width:90%;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.modal-content h2{
+    color:var(--navy);
+    margin-bottom:15px;
+}
+
+.modal-content p{
+    line-height:1.6;
+    color:#555;
+}
+
+.modal-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:25px;
+}
+
+.modal-buttons button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.visit{
+    background:var(--navy);
+    color:white;
+}
+
+.business-card{
+    background:var(--gold);
+    color:white;
+}
+
+.close{
+    background:#e5e5e5;
+    color:#333;
+}
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:2rem;
+    }
+
+    .modal-buttons{
+        flex-direction:column;
+    }
+
+    .modal-buttons button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+        <h1>Peter Abuya</h1>
+        <p>Mediator | ADR Practitioner | Strategic Professional</p>
+    </div>
+
+    <div class="content">
+
+        <h2 class="section-title">Contact Information</h2>
+
+        <div class="contact">
+
+            <div class="contact-item">
+                📞 0722442091
+            </div>
+
+            <div class="contact-item">
+                ✉️ peterabuya11@gmail.com
+            </div>
+
+            <div class="contact-item">
+                🌐 peter-abuya-official.vercel.app
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <a
+                href="https://drive.google.com/file/d/19s58BUGvzLfW2iZBpuN1xsK33m0xB6aB/view?usp=sharing"
+                target="_blank"
+                class="btn gold">
+                View Business Card
+            </a>
+
+            <a
+                href="https://peter-abuya-official.vercel.app/"
+                target="_blank"
+                class="btn primary">
+                Visit Website
+            </a>
+
+            <a
+                href="mailto:peterabuya11@gmail.com"
+                class="btn gold">
+                Send Email
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Peter Abuya | All Rights Reserved
+    </div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="modal" id="popup">
+
+    <div class="modal-content">
+
+        <h2>Welcome to Peter Abuya's Digital Business Card</h2>
+
+        <p>
+            Thank you for visiting. You can view the business card,
+            explore the official website, or contact Peter directly.
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+                class="visit"
+                onclick="window.open('https://peter-abuya-official.vercel.app/','_blank')">
+                Visit Website
+            </button>
+
+            <button
+                class="business-card"
+                onclick="window.open('https://drive.google.com/file/d/19s58BUGvzLfW2iZBpuN1xsK33m0xB6aB/view?usp=sharing','_blank')">
+                View Business Card
+            </button>
+
+            <button
+                class="close"
+                onclick="closePopup()">
+                Stay Here
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+window.onload = function() {
+    setTimeout(function() {
+        document.getElementById("popup").style.display = "flex";
+    }, 3000);
+};
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
+```
