@@ -1,323 +1,435 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peter Abuya | Digital Business Card</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peter Abuya | Digital Business Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #1a1d20;
+            --text-muted: #5e646a;
+            --accent: #2e6089; /* A professional blue */
+            --accent-hover: #1f4260;
+        }
 
-<style>
-:root{
-    --navy:#0b1f3a;
-    --gold:#c9a227;
-    --white:#ffffff;
-    --light:#f8f8f8;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, #e3ecf5 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #e3ecf5 0%, transparent 40%);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-body{
-    background:linear-gradient(135deg,var(--navy),#16376a);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
+        .mobile-container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 414px; /* standard mobile width */
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            padding: 40px 30px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.card{
-    background:var(--white);
-    width:100%;
-    max-width:700px;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+        /* Top header */
+        .header-logo {
+            margin-bottom: 25px;
+        }
+        
+        .header-logo h2 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-.header{
-    background:var(--navy);
-    color:white;
-    text-align:center;
-    padding:50px 30px;
-    border-bottom:5px solid var(--gold);
-}
+        .profile-section {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+        }
 
-.header h1{
-    font-size:2.5rem;
-    margin-bottom:10px;
-}
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            background-color: #e2e8f0; /* fallback color */
+        }
 
-.header p{
-    font-size:1.1rem;
-    color:#d9d9d9;
-}
+        .fab-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 0px;
+            width: 42px;
+            height: 42px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(46, 96, 137, 0.3);
+            transition: transform 0.2s ease;
+        }
 
-.content{
-    padding:35px;
-}
+        .fab-btn:hover {
+            transform: scale(1.08);
+        }
+        
+        .fab-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
 
-.section-title{
-    color:var(--navy);
-    border-left:5px solid var(--gold);
-    padding-left:12px;
-    margin-bottom:20px;
-    font-size:1.4rem;
-}
+        .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 5px 0;
+            letter-spacing: -0.5px;
+        }
 
-.contact{
-    display:grid;
-    gap:15px;
-    margin-bottom:30px;
-}
+        .role {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin: 0 0 25px 0;
+            line-height: 1.4;
+        }
 
-.contact-item{
-    background:#f7f7f7;
-    padding:16px;
-    border-radius:10px;
-    font-size:1rem;
-    border-left:4px solid var(--gold);
-}
+        .bio {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 35px;
+            text-align: center;
+        }
 
-.buttons{
-    display:grid;
-    gap:15px;
-}
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
 
-.btn{
-    display:block;
-    text-align:center;
-    text-decoration:none;
-    padding:16px;
-    border-radius:10px;
-    font-weight:600;
-    transition:0.3s ease;
-}
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-.primary{
-    background:var(--navy);
-    color:white;
-}
+        .icon-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(46, 96, 137, 0.2);
+        }
 
-.primary:hover{
-    background:#16376a;
-}
+        .icon-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
 
-.gold{
-    background:var(--gold);
-    color:white;
-}
+        .add-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background-color: transparent;
+            border: 2px solid #dde1e6;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-decoration: none;
+        }
 
-.gold:hover{
-    opacity:0.9;
-}
+        .add-contact-btn:hover {
+            border-color: var(--text-main);
+            background-color: #f8f9fa;
+        }
 
-.footer{
-    text-align:center;
-    padding:20px;
-    color:#666;
-    font-size:14px;
-    border-top:1px solid #eee;
-}
+        /* DESKTOP LAYOUT */
+        @media (min-width: 768px) {
+            .mobile-container {
+                max-width: 800px;
+                padding: 50px 60px;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0 50px;
+                text-align: left;
+                align-items: start;
+            }
+            .header-logo {
+                grid-column: 1 / -1;
+                text-align: left;
+                margin-bottom: 40px;
+            }
+            .profile-section {
+                grid-column: 1 / 2;
+                grid-row: 2 / 5;
+                width: 200px;
+                height: 200px;
+                margin: 0;
+            }
+            .fab-btn {
+                width: 50px;
+                height: 50px;
+                right: 5px;
+                bottom: 10px;
+            }
+            .fab-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+            .name {
+                grid-column: 2 / 3;
+                grid-row: 2;
+                font-size: 2.2rem;
+                margin-top: 10px;
+            }
+            .role {
+                grid-column: 2 / 3;
+                grid-row: 3;
+                font-size: 1.1rem;
+            }
+            .bio {
+                grid-column: 2 / 3;
+                grid-row: 4;
+                text-align: left;
+                font-size: 1rem;
+                max-width: 600px;
+            }
+            .actions-container {
+                grid-column: 2 / 3;
+                grid-row: 5;
+                display: flex;
+                align-items: center;
+                gap: 30px;
+            }
+            .social-icons {
+                margin: 0;
+            }
+            .add-contact-btn {
+                width: auto;
+            }
+        }
 
-/* POPUP */
+        /* MODAL STYLES */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+            padding: 20px;
+        }
 
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.75);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-}
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
-.modal-content{
-    background:white;
-    max-width:500px;
-    width:90%;
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.25);
-}
+        .modal-content {
+            background: #ffffff;
+            max-width: 360px;
+            width: 100%;
+            padding: 35px 25px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            transform: scale(0.95);
+            animation: scaleUp 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-.modal-content h2{
-    color:var(--navy);
-    margin-bottom:15px;
-}
+        @keyframes scaleUp {
+            to { transform: scale(1); }
+        }
 
-.modal-content p{
-    line-height:1.6;
-    color:#555;
-}
+        .modal-content h2 {
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
 
-.modal-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    margin-top:25px;
-}
+        .modal-content p {
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
 
-.modal-buttons button{
-    padding:12px 20px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-}
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-.visit{
-    background:var(--navy);
-    color:white;
-}
+        .modal-btn {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
 
-.business-card{
-    background:var(--gold);
-    color:white;
-}
+        .visit-btn {
+            background: var(--accent);
+            color: white;
+        }
+        .visit-btn:hover {
+            background: var(--accent-hover);
+        }
 
-.close{
-    background:#e5e5e5;
-    color:#333;
-}
+        .view-btn {
+            background: var(--text-main);
+            color: white;
+        }
+        .view-btn:hover {
+            background: #000;
+        }
 
-@media(max-width:600px){
-
-    .header h1{
-        font-size:2rem;
-    }
-
-    .modal-buttons{
-        flex-direction:column;
-    }
-
-    .modal-buttons button{
-        width:100%;
-    }
-}
-</style>
+        .stay-btn {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+        .stay-btn:hover {
+            background: #e2e8f0;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
+<div class="mobile-container">
 
-    <div class="header">
-        <h1>Peter Abuya</h1>
-        <p>Mediator | ADR Practitioner | Strategic Professional</p>
+    <div class="header-logo">
+        <h2>Peter Abuya</h2>
     </div>
 
-    <div class="content">
-
-        <h2 class="section-title">Contact Information</h2>
-
-        <div class="contact">
-
-            <div class="contact-item">
-                📞 0722442091
-            </div>
-
-            <div class="contact-item">
-                ✉️ peterabuya11@gmail.com
-            </div>
-
-            <div class="contact-item">
-                🌐 peter-abuya-official.vercel.app
-            </div>
-
-        </div>
-
-        <div class="buttons">
-
-            <a
-                href="https://drive.google.com/file/d/19s58BUGvzLfW2iZBpuN1xsK33m0xB6aB/view?usp=sharing"
-                target="_blank"
-                class="btn gold">
-                View Business Card
-            </a>
-
-            <a
-                href="https://peter-abuya-official.vercel.app/"
-                target="_blank"
-                class="btn primary">
-                Visit Website
-            </a>
-
-            <a
-                href="mailto:peterabuya11@gmail.com"
-                class="btn gold">
-                Send Email
-            </a>
-
-        </div>
-
+    <div class="profile-section">
+        <!-- The user can replace 'peter.jpg' with the actual uploaded image name -->
+        <img src="peter.jpg.png" alt="Peter Abuya" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Peter+Abuya&background=2e6089&color=fff&size=256'">
+        
+        <button class="fab-btn" onclick="document.getElementById('popup').style.display='flex'" title="Open Menu">
+            <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+        </button>
     </div>
 
-    <div class="footer">
-        © 2026 Peter Abuya | All Rights Reserved
+    <h1 class="name">Peter Abuya</h1>
+    <p class="role">Certified Mediator &<br>Governance Professional</p>
+
+    <p class="bio">
+        Peter Abuya is a certified mediator and governance professional with extensive leadership experience across regional and institutional environments. With a background in corporate management and alternative dispute resolution, he focuses on developing structured, ethical, and commercially sustainable private mediation models.<br><br>
+        His work is dedicated to advancing professional mediation practice and contributing to the institutional growth of ADR in emerging markets.
+    </p>
+
+    <div class="actions-container">
+        <div class="social-icons">
+            <a href="https://peter-abuya-official.vercel.app/" target="_blank" class="icon-btn" title="Website">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </a>
+            <a href="mailto:peterabuya11@gmail.com" class="icon-btn" title="Email">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+            <a href="tel:0722442091" class="icon-btn" title="Phone">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </a>
+        </div>
+
+        <!-- vcf download or generic contact action -->
+        <a href="#" class="add-contact-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> 
+            Add to Contacts
+        </a>
     </div>
 
 </div>
 
 <!-- POPUP -->
-
 <div class="modal" id="popup">
-
     <div class="modal-content">
-
-        <h2>Welcome to Peter Abuya's Digital Business Card</h2>
-
-        <p>
-            Thank you for visiting. You can view the business card,
-            explore the official website, or contact Peter directly.
-        </p>
-
+        <h2>Welcome</h2>
+        <p>You can view the business card, explore the official website, or contact Peter directly.</p>
+        
         <div class="modal-buttons">
-
-            <button
-                class="visit"
-                onclick="window.open('https://peter-abuya-official.vercel.app/','_blank')">
+            <a href="https://peter-abuya-official.vercel.app/" target="_blank" class="modal-btn visit-btn">
                 Visit Website
-            </button>
-
-            <button
-                class="business-card"
-                onclick="window.open('https://drive.google.com/file/d/19s58BUGvzLfW2iZBpuN1xsK33m0xB6aB/view?usp=sharing','_blank')">
+            </a>
+            <a href="https://drive.google.com/file/d/19s58BUGvzLfW2iZBpuN1xsK33m0xB6aB/view?usp=sharing" target="_blank" class="modal-btn view-btn">
                 View Business Card
-            </button>
-
-            <button
-                class="close"
-                onclick="closePopup()">
+            </a>
+            <button class="modal-btn stay-btn" onclick="document.getElementById('popup').style.display='none'">
                 Stay Here
             </button>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
-
 window.onload = function() {
     setTimeout(function() {
         document.getElementById("popup").style.display = "flex";
     }, 3000);
 };
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
+document.getElementById('popup').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
 </script>
 
 </body>
 </html>
-```
